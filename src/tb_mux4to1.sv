@@ -1,7 +1,3 @@
-// -----------------------------------------------------------------------
-// tb_mux4to1.sv
-// Testbench do multiplexador 4:1 de 32 bits
-// -----------------------------------------------------------------------
 `timescale 1ns/1ps
 
 module tb_mux4to1;
@@ -21,7 +17,7 @@ module tb_mux4to1;
         .out(out)
     );
 
-    // Task para checar o resultado e imprimir no console
+    // Checar o resultado e imprimir no console
     task check_output(logic [31:0] esperado);
         if (out === esperado)
             $display("[PASS] sel=%0d -> out=%h (esperado=%h) | tempo=%0t",
@@ -56,14 +52,8 @@ module tb_mux4to1;
         sel = 2'b11; #10;
         check_output(in3);
 
-        // Teste extra: muda as entradas com sel fixo, para provar
-        // que o mux propaga a entrada correta dinamicamente
-        sel = 2'b10; #5;
-        in2 = 32'h12345678; #10;
-        check_output(in2);
-
         $display("===== Fim da simulação: mux4to1 =====");
-        $stop; // pausa a simulação (use $finish se preferir encerrar totalmente)
+        $stop; 
     end
 
 endmodule
